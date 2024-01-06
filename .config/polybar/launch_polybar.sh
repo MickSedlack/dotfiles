@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#Terminate running instances
-pkill polybar
+killall -q polybar
 
-#launch Polybar using default ~.config/polybar/config.ini
-polybar mybar
-
-echo "Polybar launched..."
+polybar newbar
