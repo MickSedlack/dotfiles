@@ -197,4 +197,4 @@ gaps outer 5px
 #        status_command i3status
 #}
 
-exec ~\.config\polybar\launch_polybar.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
