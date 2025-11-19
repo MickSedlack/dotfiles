@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+killall -q lemonbar
+killall -q lemonconfig
+
+
+~/.config/lemonbar/lemonconfig | lemonbar -p -g 1920x17 -F "#00ff51" -B "#000000" -U "#ff0099" -f "CaskaydiaCove Nerd Font Mono"-14
+
+#lemonbar | lemonconfig -p -g 1920x17 -F "#FFFFFFFF" -B "#FF222222" -U"#268bd2" -f "Adobe Courier" -o -2 -f "Agave Nerd Regular"-14 
