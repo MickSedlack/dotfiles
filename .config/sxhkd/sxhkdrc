@@ -1,0 +1,40 @@
+#
+# hotkey for media and runners
+# 'wm agnostic' pff plain media keys and control programs
+
+alt + space
+    ~/.config/drun/customrun.sh &
+
+alt + p
+    ~/scripts/dmenu/poweroptions.sh
+
+alt + k
+    ~/.config/drun/dmenu-bluetooth 'B' -fn 'Cozettevector-20' &
+
+alt + l
+    slock
+
+Print
+    ~/scripts/dmenu/dmenushot.sh
+
+XF86Calculator
+    speedcrunch
+
+XF86AudioLowerVolume
+    ~/scripts/volumeControl.sh down &
+
+XF86AudioRaiseVolume
+    ~/scripts/volumeControl.sh up &
+
+XF86AudioMute
+    ~/scripts/volumeControl.sh mute &
+
+Pause
+    playerctl play-pause
+
+shift + Prior
+    playerctl next
+
+shift + Next
+    playerctl previous
+
