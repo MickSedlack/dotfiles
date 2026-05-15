@@ -6,7 +6,7 @@ alt + space
     ~/.config/drun/customrun.sh &
 
 alt + p
-    ~/scripts/dmenu/poweroptions.sh
+    ~/.config/drun/poweroptions.sh
 
 alt + k
     ~/.config/drun/dmenu-bluetooth 'B' -fn 'Cozettevector-20' &
@@ -15,19 +15,19 @@ alt + l
     slock
 
 Print
-    ~/scripts/dmenu/dmenushot.sh
+    ~/.config/drun/dmenushot.sh
 
 XF86Calculator
     speedcrunch
 
 XF86AudioLowerVolume
-    ~/scripts/volumeControl.sh down &
+    ~/.config/drun/volumeControl.sh down &
 
 XF86AudioRaiseVolume
-    ~/scripts/volumeControl.sh up &
+   ~/.config/drun/volumeControl.sh up &
 
 XF86AudioMute
-    ~/scripts/volumeControl.sh mute &
+    ~/.config/drun/volumeControl.sh mute &
 
 Pause
     playerctl play-pause
