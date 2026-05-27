@@ -2,7 +2,7 @@
 
 entries=("Snip" "Window" "Printscreen" "Clipboard")
 
-selected=$(printf '%s\n' ${entries[@]} | dmenu -i -l 4 -fn 'Cozettevector-16')
+selected=$(printf '%s\n' ${entries[@]} | dmenu -i -l 4 -fn 'Inconsolata Nerd Font Mono-16')
 
 case $selected in
 	S*) 
