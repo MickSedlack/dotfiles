@@ -1,0 +1,16 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+function cur_dir
+{
+    local dir="`pwd`"
+    echo $dir
+}
+export PS1='[`cur_dir`]$ '
