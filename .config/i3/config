@@ -114,8 +114,8 @@ default_border normal
 gaps inner 5px
 gaps outer 5px
 
+bindsym $mod+Shift+u exec i3lock -e -c 000000
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Escape exec exec zenity --question --text="Close the session?" && swaymsg exit
-exec /usr/libexec/xdg-desktop-portal -r
-exec_always --no-startup-id autotiling
-exec_always ~/.config/polybar/launch_polybar.sh
+exec /usr/lib/xdg-desktop-portal -r
+exec autotiling &
