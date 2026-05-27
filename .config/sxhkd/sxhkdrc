@@ -9,10 +9,10 @@ alt + p
     ~/.config/drun/poweroptions.sh
 
 alt + k
-    ~/.config/drun/dmenu-bluetooth 'B' -fn 'Cozettevector-20' &
+    ~/.config/drun/dmenu-bluetooth 'B' -fn 'Inconsolata Nerd Font Mono-16' &
 
 alt + l
-    slock
+    i3lock -e -c 000000
 
 Print
     ~/.config/drun/dmenushot.sh
