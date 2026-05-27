@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-dmenu_run -i -p '🔬' -fn 'Cozettevector-16'
+dmenu_run -i -p '♥' -fn 'Inconsolata Nerd Font Mono-16'
