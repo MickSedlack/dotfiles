@@ -2,8 +2,7 @@
 
 [global]
     ### Display ###
-    monitor = 0
-    follow = mouse
+    monitor = 1
     ### Geometry ###
     width = (100, 300)
     height = (0, 300)
