@@ -31,6 +31,6 @@ case $1 in
   mute)
     # toggle mute
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    dunstify -i audio-volume-muted -r 22328 -u normal "mute"
+    dunstify "Volume: $(printf $(pamixer --get-volume-human))" -i audio-volume-muted -r 22328
     ;;
 esac
