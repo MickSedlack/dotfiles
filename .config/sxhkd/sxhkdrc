@@ -3,7 +3,7 @@
 # 'wm agnostic' pff plain media keys and control programs
 
 alt + space
-    ~/.config/drun/customrun.sh &
+    ~/.config/drun/customrun.sh 1 &
 
 alt + p
     ~/.config/drun/poweroptions.sh
@@ -16,9 +16,6 @@ alt + l
 
 Print
     ~/.config/drun/dmenushot.sh
-
-XF86Calculator
-    speedcrunch
 
 XF86AudioLowerVolume
     ~/.config/drun/volumeControl.sh down &
