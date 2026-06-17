@@ -1,7 +1,7 @@
 #!/bin/bash
 entries=('Reload' 'Logout' 'Suspend' 'Reboot' 'Shutdown')
 
-selected=$(printf '%s\n' ${entries[@]} | dmenu -i -p 'Power options' -fn 'Cozettevector-16' -l 4)
+selected=$(printf '%s\n' ${entries[@]} | dmenu -i -p 'Power options' -fn 'Inconsolata Nerd Font Mono-16')
 
 case $selected in
 	Reload) _pkill sxhkd && sxhkd ;;
