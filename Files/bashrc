@@ -5,12 +5,56 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
-
+if [ "$DISPLAY" != "" ] && [ "$XAUTHORITY" = "" ]; then
+    export XAUTHORITY=$HOME/.Xauthority
+fi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-function cur_dir
-{
-    local dir="`pwd`"
-    echo $dir
+
+pman() {
+  local man_target
+  command -v ps2pdf >/dev/null 2>&1 || {
+    man "${@}"
+    return "${?}"
+  }
+
+  man_target="${1:?No target manpage specified}"
+  man -t "${man_target}" | ps2pdf - > "${man_target}.pdf"
+  xdg-open "${man_target}.pdf"
+  # We put in a brief sleep to prevent a hilarious race between xdg-open and rm
+  sleep 2
+  rm -f "${man_target}.pdf" 2>/dev/null
 }
-export PS1='[`cur_dir`]$ '
+
+# https://bbs.archlinux.org/viewtopic.php?pid=2197518#p2197518
+pdfmerge() {
+	if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+		echo "Usage: pdfmerge MERGED PDF1 PDF2"
+		echo "Merge PDF1 and PDF2 into MERGED"
+		return 0
+	fi
+	if [ "$#" != 3 ]; then
+		echo "pdfmerge: bad usage"
+		echo "Try 'pdfmerge --help' for more information"
+		return 1
+	fi
+	gs -qo -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o $@
+}
+
+#-- config polybar
+function config() {
+  if [ -d "$HOME/.config/$1" ]; then
+    cd "$HOME/.config/$1"
+  elif [ -f "$HOME/.config/$1" ]; then
+    vim "$HOME/.config/$1"
+  else
+    echo "$1 does not exist in the .config directory."
+  fi
+}
+#fff file jumper
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+
+export PS1='[`pwd`]$ '
