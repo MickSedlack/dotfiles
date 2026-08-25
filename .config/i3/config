@@ -1,9 +1,31 @@
+#============ Autostart ============
+exec ~/.config/polybar/launch_polybar.sh &
+exec /usr/lib/xdg-desktop-portal -r
+exec systemctl --user import-environment DISPLAY XAUTHORITY
+exec systemctl --user restart xdg-desktop-portal-gtk
+exec systemctl --user restart xdg-desktop-portal
+exec autotiling &
+
+#============ Core Variables ============
 set $mod Mod4
+set $term alacritty 
+font pango:Inconsolata Nerd Font Mono 14
+
+#============ Keybindings ============
 floating_modifier $mod
 bindsym $mod+Shift+c reload
 bindsym $mod+q kill
-#font pango:Noto Sans Mono 12
-font pango:Cascaydia Cove Mono Font 12
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+Escape exec i3-nagbar -m "Close the session?" -b 'Exit' 'i3-msg exit'
+
+bindsym $mod+Shift+Button2 move scratchpad
+bindsym $mod+Button2 scratchpad show
+#============ Windowrules ============
+
+for_window [class="Volume Control"] floating enable
+
+#============ Windows ============
+
 # focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -15,10 +37,6 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -31,11 +49,12 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Tab floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
+#============ Workspaces ============
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -45,21 +64,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
-
-set $monitor_left "DP2"
-set $monitor_right "HDMI-0"
-
-workspace $ws1 output $monitor_left
-workspace $ws2 output $monitor_left
-workspace $ws3 output $monitor_left
-workspace $ws4 output $monitor_left
-workspace $ws5 output $monitor_left
-workspace $ws6 output $monitor_right
-workspace $ws7 output $monitor_right
-workspace $ws8 output $monitor_right
-workspace $ws9 output $monitor_right
-workspace $ws10 output $monitor_right
+set $ws10 "0"
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -81,55 +86,57 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+10 move container to workspace number $ws10
 
+#============ Monitors  ============
+set $monitor_left "DP2"
+set $monitor_right "HDMI-0"
+
+workspace $ws1 output $monitor_left
+workspace $ws2 output $monitor_left
+workspace $ws3 output $monitor_left
+workspace $ws4 output $monitor_left
+workspace $ws5 output $monitor_left
+workspace $ws6 output $monitor_right
+workspace $ws7 output $monitor_right
+workspace $ws8 output $monitor_right
+workspace $ws9 output $monitor_right
+workspace $ws10 output $monitor_right
+
+#============ Modes ============
 bindsym $mod+r mode "Resize"
 mode "Resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
+        # left will shrink width. right will grow width.
+        # up will shrink height. down will grow height.
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
-
+        # same bindings, but for the jkl; keys
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-bindsym $mod+c mode "Launcher"
-mode "Launcher" {
-	bindsym $mod+f exec zen-browser
-	bindsym $mod+t exec thunar
-	bindsym $mod+h exec alacritty -e htop
-	
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym $mod+r mode "default"
-}
-bindsym Control+$mod+semicolon mode "Gaming"
-mode "Gaming" {
+bindsym Control+$mod+Return mode "Focus"
+mode "Focus" {
+	# Focus or gaming. Modes eat all i3 hotkeys. 
 	bindsym $mod+f fullscreen toggle
 	bindsym Escape mode "default"
 }
+#============ Eye Candy  ============
+client.focused          		#333333 #203355 #ffffff #2e9ef4   #285577F
+client.focused_inactive 		#333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused       	 	#333333 #222222 #888888 #292d2e   #222222
+client.urgent           		#2f343a	#900000 #ffffff #900000   #900000
+client.placeholder      		#000000	#0c0c0c #ffffff #000000   #0c0c0c
 
-client.focused_tab_title #333333 #FFFFFF #ffffff
 default_border normal
 gaps inner 5px
 gaps outer 5px
 
-bindsym $mod+Shift+u exec i3lock -e -c 000000
-bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Escape exec exec zenity --question --text="Close the session?" && i3-msg exit
-exec /usr/lib/xdg-desktop-portal -r
-exec autotiling &
+
