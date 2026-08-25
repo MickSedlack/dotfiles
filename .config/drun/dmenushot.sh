@@ -11,7 +11,7 @@ case $selected in
 	W*)
 	maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png;;
 	P*)
-	maim ~/Pictures/screenshots/$(date +%A%-%R%-%S).png;;
+	maim ~/Pictures/Screenshots/$(date +%A%-%R%-%S).png;;
 	C*)
 	maim | xclip -selection clipboard -t image/png;;			
 esac
