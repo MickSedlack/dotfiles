@@ -9,8 +9,9 @@ if [ "$#" != "1" ]; then
 	exit 1
 fi 
 
+cd /home/$1
 mkdir -p bin desktop Downloads Documents Pictures/Wallpapers Projects
-#chown -R $1 /home/$1
+chown -R $1 /home/$1
 
 cd /home/$1/Downloads
 git clone https://github.com/MickSedlack/dotfiles
@@ -35,9 +36,8 @@ curl -O --output-dir /home/$1/Pictures/Wallpapers https://i.imgur.com/Q1tMclC.jp
 cd /home/$1
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -s
 
-echo "YAY COMPLETED"
+echo "YAY READY"
 echo "pacman -S --needed - < whatever.txt"
  
 
