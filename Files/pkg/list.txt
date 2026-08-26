@@ -17,10 +17,10 @@ noto-fonts-cjk
 openssh
 pamixer
 pavucontrol
-pipemixer-git
-pipewire-pulse
 polybar
+pulseaudio
 pulseaudio-alsa
+pulseaudio-bluetooth
 ristretto
 sxhkd
 thunar
