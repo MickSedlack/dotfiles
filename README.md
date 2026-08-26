@@ -1,11 +1,7 @@
-Current laptop/i3 config, a basic i3 config.
-Preference for Thunar, Slock, Zen Browser, CascaydiaCove
-Relies on:  
+Current PC dotfiles. Plain i3/polybar on arch.
 
-Piotr's i3/sway autotiling script: https://github.com/nwg-piotr/autotiling
+Hidden files and the new install script are in Files.
 
-Simple Lemonbar from replaceits: https://github.com/replaceits/Simple-Lemonbar
-
-Had to swap out volume, and pulled other lemonbar modules from Julius's dots: https://github.com/JuliusSchumacher/lapdots/
-
-Nick Clyde's dmenu bluetoothctl script for : https://github.com/Layerex/dmenu-bluetooth/tree/master
+Included is a dunst calendar from chebro: https://github.com/chebro/calendar-notification  
+A fork of forks for dunst volume alerts: https://github.com/dastorm/volume-notification-dunst/blob/master/volume.sh  
+Nick Clyde's dmenu bluetoothctl script for: https://github.com/Layerex/dmenu-bluetooth/tree/master  
