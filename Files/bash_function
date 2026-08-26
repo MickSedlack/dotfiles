@@ -1,0 +1,57 @@
+#
+# ~/.bash_function
+#
+
+
+pman() {
+  local man_target
+  command -v ps2pdf >/dev/null 2>&1 || {
+    man "${@}"
+    return "${?}"
+  }
+
+  man_target="${1:?No target manpage specified}"
+  man -t "${man_target}" | ps2pdf - > "${man_target}.pdf"
+  xdg-open "${man_target}.pdf"
+  # We put in a brief sleep to prevent a hilarious race between xdg-open and rm
+  sleep 2
+  rm -f "${man_target}.pdf" 2>/dev/null
+}
+
+# https://bbs.archlinux.org/viewtopic.php?pid=2197518#p2197518
+pdfmerge() {
+	if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+		echo "Usage: pdfmerge MERGED PDF1 PDF2"
+		echo "Merge PDF1 and PDF2 into MERGED"
+		return 0
+	fi
+	if [ "$#" != 3 ]; then
+		echo "pdfmerge: bad usage"
+		echo "Try 'pdfmerge --help' for more information"
+		return 1
+	fi
+	gs -qo -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o $@
+}
+
+#simple config edit/jumper
+#-- config i3/config
+#-- config polybar
+function config() {
+  if [ -d "$HOME/.config/$1" ]; then
+    cd "$HOME/.config/$1"
+  elif [ -f "$HOME/.config/$1" ]; then
+    vim "$HOME/.config/$1"
+  else
+    echo "$1 does not exist in the .config directory."
+  fi
+}
+#fff file jumper
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+#file jumper command
+tere(){
+    local result=$(command tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
