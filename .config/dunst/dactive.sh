@@ -1,17 +1,14 @@
-#!/usr/bin/dash
+#!/bin/bash
 
 active=$(dunstctl is-paused)
-if [ "$1" = "swap" ] ; then
-	dunstctl set-paused toggle
+
+if [ "$1" = "swap" ]; then
+    dunstctl set-paused toggle
+    exit 0
+fi
+
+if [ "$active" = "true" ]; then
+    printf "  󰖰"
 else
-
-	output=""
-	if [ "$active" = "true" ] ; then
-		output="  󰖰"
-	else
-		output="  󰖯"
-	fi
-
-	printf ${output}
-fi 
-
+    printf "  󰖯"
+fi
