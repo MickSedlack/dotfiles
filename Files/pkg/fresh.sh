@@ -30,6 +30,9 @@ cd dotfiles
 if test -d .config; then
 	echo "Moving .config"
 	mv .config /home/$1/
+elif test -d config; then
+	echo "Moving config"
+	mv config /home/$1/
 fi
 
 cd Files
@@ -44,6 +47,11 @@ for file in *; do
 done
 
 curl -O --output-dir /home/$1/Pictures/Wallpapers https://i.imgur.com/Q1tMclC.jpeg
+
+distro=$(lsb_release -si)
+if $distro != "Arch"; then
+	exit 1
+fi
 
 cd /home/$1
 #chown -R $1 /home/$1
