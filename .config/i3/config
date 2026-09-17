@@ -122,11 +122,12 @@ mode "Resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-bindsym Control+$mod+Return mode "Focus"
+bindsym Control+$mod+Return mode "Focus"; exec "dunstctl set-paused toggle"
 mode "Focus" {
 	# Focus or gaming. Modes eat all i3 hotkeys. 
+	# Also pauses dunst 
 	bindsym $mod+f fullscreen toggle
-	bindsym Escape mode "default"
+	bindsym Escape mode "default"; exec "dunstctl set-paused toggle"
 }
 #============ Eye Candy  ============
 client.focused          		#333333 #203355 #ffffff #2e9ef4   #285577F
